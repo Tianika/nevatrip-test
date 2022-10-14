@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Nevatrip test</title>
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <div id="root">
+      <section>
+        <nav class="menu">
+          <ul class="ul-menu">
+            <li class="ul-menu-link"><a href="#layout">1.1 Верстка блока</a></li>
+            <li class="ul-menu-link"><a href="#table">1.2 Таблица на странице</a></li>
+            <li class="ul-menu-link"><a href="#tickets">2.1 Билеты на событие</a></li>
+            <li class="ul-menu-link"><a href="#trip">2.2 Время из A в B</a></li>
+          </ul>
+        </nav>
+      </section>
+      <section>
+        <div id="layout">
+          <h2 class="section-title">1.1 Верстка блока</h2>
+          <p style="padding-bottom: 20px">Адаптив до 375px</p>
+          <div class="cards-container"></div>
+        </div>
+      </section>
+      <section>
+        <div id="table">
+          <h2 class="section-title">1.2 Таблица на странице</h2>
+          <div>
+            Горизонтальный скролл появляется из-за того, что на странице есть вертикальный скролл.
+            Самый простой способ - это использовать overflow-x: hidden для body. Более правильно
+            немного поменять стиль для div с классом blog
+            <code>
+              <pre>
+                .blog { 
+                  position: relative; 
+                  margin: 0 auto; 
+                  padding: 20px 15px; 
+                  background-color: #fff; 
+                  box-sizing: border-box; 
+                  max-width: 990px;
+                  width: 100%; 
+                }
+              </pre>
+            </code>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div id="tickets">
+          <h2 class="section-title">2.1 Билеты на событие</h2>
+          <p>
+            1.1 Для добавления новых типов билетов, добавим столбцы с ценами на эти билеты и их
+            количество, так же как были сделаны детские и взрослые типы билетов
+          </p>
+
+          <table class="event-table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>event_id</th>
+                <th>event_date</th>
+                <th>ticket_adult_price</th>
+                <th>ticket_adult_quantity</th>
+                <th>ticket_kid_price</th>
+                <th>ticket_kid_quantity</th>
+                <th>ticket_discounte_price</th>
+                <th>ticket_discounte_quantity</th>
+                <th>ticket_group_price</th>
+                <th>ticket_group_quantity</th>
+                <th>barcode</th>
+                <th>user_id</th>
+                <th>equal_price</th>
+                <th>created</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>003</td>
+                <td>2021-08-21 13:00:00</td>
+                <td>700</td>
+                <td>1</td>
+                <td>450</td>
+                <td>0</td>
+                <td>500</td>
+                <td>1</td>
+                <td>400</td>
+                <td>0</td>
+                <td>11111111</td>
+                <td>00451</td>
+                <td>1200</td>
+                <td>2021-01-11 13:22:09</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>006</td>
+                <td>2021-07-29 18:00:00</td>
+                <td>1000</td>
+                <td>0</td>
+                <td>800</td>
+                <td>2</td>
+                <td>700</td>
+                <td>0</td>
+                <td>800</td>
+                <td>0</td>
+                <td>22222222</td>
+                <td>00364</td>
+                <td>1600</td>
+                <td>2021-01-12 16:62:08</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>003</td>
+                <td>2021-08-15 17:00:00</td>
+                <td>700</td>
+                <td>4</td>
+                <td>450</td>
+                <td>3</td>
+                <td>500</td>
+                <td>0</td>
+                <td>600</td>
+                <td>0</td>
+                <td>33333333</td>
+                <td>00015</td>
+                <td>4150</td>
+                <td>2021-01-13 10:08:45</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            1.2 Для сохранения баркодов нужно добавить поле order_id, в него будет сохраняться номер
+            заказа. Id - это будет уникальный инкрементальный номер записи в таблице и для каждого
+            билета своя строка таблицы с уникальным баркодом.
+          </p>
+          <table class="event-table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>order_id</th>
+                <th>event_id</th>
+                <th>event_date</th>
+                <th>ticket_adult_price</th>
+                <th>ticket_adult_quantity</th>
+                <th>ticket_kid_price</th>
+                <th>ticket_kid_quantity</th>
+                <th>barcode</th>
+                <th>user_id</th>
+                <th>equal_price</th>
+                <th>created</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>003</td>
+                <td>2021-08-21 13:00:00</td>
+                <td>700</td>
+                <td>1</td>
+                <td>450</td>
+                <td>0</td>
+                <td>11111111</td>
+                <td>00451</td>
+                <td>700</td>
+                <td>2021-01-11 13:22:09</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>2</td>
+                <td>006</td>
+                <td>2021-07-29 18:00:00</td>
+                <td>1000</td>
+                <td>0</td>
+                <td>800</td>
+                <td>1</td>
+                <td>22222222</td>
+                <td>00364</td>
+                <td>800</td>
+                <td>2021-01-12 16:62:08</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>2</td>
+                <td>006</td>
+                <td>2021-07-29 18:00:00</td>
+                <td>1000</td>
+                <td>0</td>
+                <td>800</td>
+                <td>1</td>
+                <td>22232222</td>
+                <td>00364</td>
+                <td>800</td>
+                <td>2021-01-12 16:62:08</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>3</td>
+                <td>003</td>
+                <td>2021-08-15 17:00:00</td>
+                <td>700</td>
+                <td>1</td>
+                <td>450</td>
+                <td>0</td>
+                <td>33333333</td>
+                <td>00015</td>
+                <td>700</td>
+                <td>2021-01-13 10:08:45</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>3</td>
+                <td>003</td>
+                <td>2021-08-15 17:00:00</td>
+                <td>700</td>
+                <td>0</td>
+                <td>450</td>
+                <td>1</td>
+                <td>33345633</td>
+                <td>00015</td>
+                <td>450</td>
+                <td>2021-01-13 10:08:45</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>3</td>
+                <td>003</td>
+                <td>2021-08-15 17:00:00</td>
+                <td>700</td>
+                <td>1</td>
+                <td>450</td>
+                <td>0</td>
+                <td>33398333</td>
+                <td>00015</td>
+                <td>700</td>
+                <td>2021-01-13 10:08:45</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>3</td>
+                <td>003</td>
+                <td>2021-08-15 17:00:00</td>
+                <td>700</td>
+                <td>1</td>
+                <td>450</td>
+                <td>0</td>
+                <td>33345333</td>
+                <td>00015</td>
+                <td>4150</td>
+                <td>2021-01-13 10:08:45</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>3</td>
+                <td>003</td>
+                <td>2021-08-15 17:00:00</td>
+                <td>700</td>
+                <td>0</td>
+                <td>450</td>
+                <td>1</td>
+                <td>33356533</td>
+                <td>00015</td>
+                <td>700</td>
+                <td>2021-01-13 10:08:45</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>4</td>
+                <td>006</td>
+                <td>2021-08-15 17:00:00</td>
+                <td>1000</td>
+                <td>1</td>
+                <td>450</td>
+                <td>0</td>
+                <td>55555555</td>
+                <td>00015</td>
+                <td>1000</td>
+                <td>2021-01-13 10:08:45</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section>
+        <div id="trip">
+          <h2 class="section-title">2.2 Время из A в B</h2>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
